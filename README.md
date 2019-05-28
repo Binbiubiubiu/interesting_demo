@@ -10,4 +10,4 @@ a lot of interesting demoes
 ## canvas
 
 1. arc_dance  
-   https://wildlifes.github.io/interesting_demo/css3/arc_dance.html
+   https://wildlifes.github.io/interesting_demo/canvas/arc_dance.html
