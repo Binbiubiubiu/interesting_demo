@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .logo {
+            transform: scale(3);
+            height: 900px;
+        }
+
+        .cube-inner,
+        .cube-inner li {
+            position: absolute;
+            display: block;
+        }
+
+
+
+        .cube-inner {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            top: 50%;
+            left: 50%;
+            transform-origin: 25px 25px;
+            margin: -25px 0 0 -25px;
+            transform: rotateX(-33.5deg) rotateY(45deg);
+            transform-style: preserve-3d;
+            animation: fastspin 10s ease-in-out infinite 2s;
+        }
+
+        .cube-inner li {
+            background: radial-gradient(transparent 30%, rgba(5, 17, 53, .2) 100%)
+        }
+
+        .cube-inner li {
+            width: 50px;
+            height: 50px;
+            transition: transform 1s ease-in-out;
+        }
+
+        .cube-inner li::after {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            backface-visibility: hidden;
+            background-color: rgba(16, 58, 177, .5);
+            transition: transform 1s ease-in-out;
+        }
+
+
+
+        .cube,
+        .cube li {
+            position: absolute;
+            display: block;
+        }
+
+
+        .cube {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            top: 50%;
+            left: 50%;
+            transform-origin: 50px 50px;
+            margin: -50px 0 0 -50px;
+            transform: rotateX(-33.5deg) rotateY(45deg);
+            transform-style: preserve-3d;
+            animation: slowspin 10s ease-in-out infinite 2s;
+        }
+
+        .cube .front,
+        .cube .back,
+        .cube .top,
+        .cube .bottom,
+        .cube .left,
+        .cube .right {
+            background: radial-gradient(transparent 30%, rgba(16, 47, 91, .2) 100%);
+        }
+
+        .cube li {
+            width: 100px;
+            height: 100px;
+            transition: transform 1s ease-in-out;
+        }
+
+        .cube .front::after,
+        .cube .back::after,
+        .cube .top::after,
+        .cube .bottom::after,
+        .cube .left::after,
+        .cube .right::after {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            backface-visibility: hidden;
+            background-color: rgba(126, 169, 232, .5);
+            transition: transform 1s ease-in-out;
+        }
+
+
+
+        .cube .floor {
+            box-shadow: -300px 0 50px rgba(0, 0, 0, .3);
+            backface-visibility: visible;
+            width: 110px;
+            height: 110px;
+            left: 295px;
+            background-color: transparent;
+            transform: rotateX(-90deg) translateZ(60px)
+        }
+
+        @keyframes fastspin {
+            0% {
+                transform: rotateX(-33.5deg) rotateY(45deg);
+            }
+
+            10%,
+            100% {
+                transform: rotateX(-33.5deg) rotateY(-315deg);
+            }
+        }
+
+        @keyframes slowspin {
+            0% {
+                transform: rotateX(-33.5deg) rotateY(45deg);
+            }
+
+            10%,
+            100% {
+                transform: rotateX(-33.5deg) rotateY(225deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="logo-container" style="overflow: hidden">
+        <div class="logo">
+            <ul class="cube-inner">
+                <li class="front"></li>
+                <li class="back"></li>
+                <li class="right"></li>
+                <li class="left"></li>
+                <li class="top"></li>
+                <li class="bottom"></li>
+            </ul>
+            <ul class="cube">
+                <li class="front"></li>
+                <li class="back"></li>
+                <li class="right"></li>
+                <li class="left"></li>
+                <li class="top"></li>
+                <li class="bottom"></li>
+                <li class="floor"></li>
+            </ul>
+        </div>
+    </div>
+    <style>
+        .cube-inner .front {
+            transform: translateZ(25px);
+        }
+
+        .cube-inner .back {
+            transform: rotateX(-180deg) translateZ(25px);
+        }
+
+        .cube-inner .top {
+            transform: rotateX(90deg) translateZ(25px);
+        }
+
+        .cube-inner .bottom {
+            transform: rotateX(-90deg) translateZ(25px);
+        }
+
+        .cube-inner .left {
+            transform: rotateY(-90deg) translateZ(25px);
+        }
+
+        .cube-inner .right {
+            transform: rotateY(90deg) translateZ(25px);
+        }
+
+
+        .cube .front {
+            transform: translateZ(50px);
+        }
+
+        .cube .back {
+            transform: rotateX(-180deg) translateZ(50px);
+        }
+
+        .cube .top {
+            transform: rotateX(90deg) translateZ(50px);
+        }
+
+        .cube .bottom {
+            transform: rotateX(-90deg) translateZ(50px);
+        }
+
+        .cube .left {
+            transform: rotateY(-90deg) translateZ(50px);
+        }
+
+        .cube .right {
+            transform: rotateY(90deg) translateZ(50px);
+        }
+
+        .cube .top:after {
+            background-color: rgba(152, 186, 237, .5);
+        }
+    </style>
+</body>
+
+</html>
