@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>verification_code</title>
+    <style>
+        .input-val {
+            width: 200px;
+            height: 32px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+        }
+
+        #canvas {
+            vertical-align: middle;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            cursor: pointer;
+        }
+
+        .bin {
+            display: block;
+            margin-top: 20px;
+            height: 32px;
+            width: 100px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body onload="bodyLoad()">
+    <div class="code">
+        <input type="text" value="" placeholder="请输入验证码(区分大小写)" class="input-val" />
+        <canvas id="canvas" width="100" height="30"></canvas>
+        <button class="btn">提交</button>
+    </div>
+    <script>
+        var show_num = [];
+        function bodyLoad() {
+
+            draw(show_num);
+
+            var canvas = document.querySelector('canvas');
+            var btn = document.querySelector('button');
+
+            canvas.onclick = function () {
+                draw(show_num)
+            }
+
+            btn.onclick = function () {
+                var val = document.querySelector('input').value.toLowerCase();
+                var num = show_num.join('');
+                if (val === '') {
+                    alert('请输入验证码!')
+                } else if (val === num) {
+                    alert('提交成功!')
+                    document.querySelector('input').value = ''
+                } else {
+                    alert('验证码错误！请重新输入！');
+                    document.querySelector('input').value = ''
+                }
+            }
+        }
+
+        var canvas = document.querySelector('canvas');//获取到canvas的对象，演员
+
+
+        var canvas_width = parseInt(getStyle(canvas, "width"));
+        var canvas_height = parseInt(getStyle(canvas, "height"));
+        //生成并渲染出验证码图形
+        function draw(show_num) {
+
+
+            var ctx = canvas.getContext('2d');//获取到canvas画图的环境，演员表演的舞台
+            ctx.width = canvas_width;
+            ctx.height = canvas_height;
+            var sCode = "a,b,c,d,e,f,g,h,i,j,k,m,n,p,q,r,s,t,u,v,w,x,y,z,A,B,C,E,F,G,H,J,K,L,M,N,P,Q,R,S,T,W,X,Y,Z,1,2,3,4,5,6,7,8,9,0";
+            var aCode = sCode.split(",");
+            var aLength = aCode.length;//获取到数组的长度
+
+
+            ctx.fillStyle = '#000'
+            ctx.clearRect(0, 0, canvas_width, canvas_height)
+
+
+            for (var i = 0; i < 4; i++) {
+
+                var j = Math.floor(Math.random() * aLength);
+
+                var deg = Math.random() - 0.5;//产生一个随机弧度(-0.5-0.5)
+                var txt = aCode[j];//得到随机的一个内容
+                show_num[i] = txt.toLowerCase();
+                var x = 10 + i * 20;//文字在canvas上的x坐标
+                var y = 20 + Math.random() * 8;//文字在canvas上的y坐标
+
+                ctx.save()
+                ctx.font = "23px bold  微软雅黑";
+                ctx.translate(x, y)
+                ctx.rotate(deg);
+                ctx.fillStyle = randomColor();
+                ctx.fillText(txt, 0, 0)
+                ctx.restore()
+
+            }
+
+
+            for (var i = 0; i < 5; i++) {
+                ctx.strokeStyle = randomColor();
+                ctx.beginPath();
+                ctx.moveTo(Math.random() * canvas_width, Math.random() * canvas_height);
+                ctx.lineTo(Math.random() * canvas_width, Math.random() * canvas_height);
+                ctx.stroke()
+            }
+
+            for (var i = 0; i < 30; i++) {
+                ctx.strokeStyle = randomColor();
+                ctx.beginPath();
+                var x = Math.random() * canvas_width;
+                var y = Math.random() * canvas_height;
+                ctx.moveTo(x, y);
+                ctx.lineTo(x + 1, y + 1);
+                ctx.stroke()
+            }
+        }
+
+        function randomColor() {
+            var r = Math.floor(Math.random() * 256);
+            var g = Math.floor(Math.random() * 256);
+            var b = Math.floor(Math.random() * 256);
+            return "rgb(" + r + "," + g + "," + b + ")";
+        }
+
+        function getStyle(el, attr) {
+            return el.currentStyle ? el.currentStyle[attr] : window.getComputedStyle(el, null)[attr]
+        }
+    </script>
+</body>
+
+</html>
