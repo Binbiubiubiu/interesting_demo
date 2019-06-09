@@ -14,9 +14,14 @@ a lot of interesting demoes
    Address of the original work: https://github.com/accforgit/accforgit.github.com
 3. **verification_code:** https://wildlifes.github.io/interesting_demo/canvas/verification_code.html  
    Address of the original work: https://www.cnblogs.com/libo0125ok/p/9590818.html
+
 ## js
+
 1. LazyMan
 2. max min
 3. deepCopy
 4. shuffle
 5. flatten
+6. uniq
+7. bind
+8. 
